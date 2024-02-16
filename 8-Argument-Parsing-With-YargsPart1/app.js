@@ -1,4 +1,4 @@
-import yargs from "yargs";
+const yargs = require("yargs");
 
 // or .argv;
 
@@ -11,25 +11,71 @@ import yargs from "yargs";
 //     console.log("Removing!!!...");
 // }
 
-//customise yargs version
-yargs.version("1.1.0");
-// console.log(process.argv);
-console.log(yargs.argv);
+// //customise yargs version
+// yargs.version("1.1.0");
+// // console.log(process.argv);
+// console.log(yargs.argv);
 
 //Create add command
 
+// yargs.command({
+//     command: "add",
+//     description: "add a new note",
+//     handler: function () {
+//         console.log("Adding a new note!.........");
+//     },
+// });
+// yargs.command({
+//     command: "remove",
+//     description: "remove a note",
+//     handler: function () {
+//         console.log("removing the note!...");
+//     },
+// });
+// yargs.parse();
+
+//Yargs Part 2
+
+//Creating Add Command
 yargs.command({
     command: "add",
-    description: "add a new note",
-    handler: function () {
-        console.log("Adding a new note!.........");
+    describe: "Adding a new note",
+    builder: {
+        title: {
+            describe: "Note-Title",
+            demandOption: true,
+            type: "string",
+        },
+    },
+    handler: function (argv) {
+        console.log("Title:" + argv.title);
     },
 });
+
+//Creating Read Command
 yargs.command({
-    command: "remove",
-    description: "remove a note",
+    command: "read",
+    describe: "Read a note",
     handler: function () {
-        console.log("removing the note!...");
+        console.log("Reading a note!!...");
+    },
+});
+
+//Create Remove Command
+yargs.command({
+    command: "Remove",
+    describe: "Removing a note",
+    handler: function () {
+        console.log("Removing a note!!...");
+    },
+});
+
+//Create list command
+yargs.command({
+    command: "list",
+    describe: "List Your Notes",
+    handler: function () {
+        console.log("Listing Out All Notes");
     },
 });
 yargs.parse();

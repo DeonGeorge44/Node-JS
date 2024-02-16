@@ -10,8 +10,14 @@ import yargs from "yargs";
 yargs.command({
     command: "list",
     description: "This is the list-information..",
+    builder: {
+        title: {
+            describe: "Note title",
+            demandOption: true,
+        },
+    },
     handler: function () {
-        console.log("This is my-list-command");
+        console.log("Adding a new note!!!!!!!!.....", argv);
     },
 });
 
